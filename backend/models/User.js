@@ -1,0 +1,34 @@
+const pool = require("../db");
+const bcrypt = require("bcrypt");
+
+class User {
+  static async create(username, password) {
+    const hashed = await bcrypt.hash(password, 10);
+    const result = await pool.query(
+      "INSERT INTO users (username, password_hash) VALUES ($1, $2) RETURNING id, username, created_at",
+      [username, hashed],
+    );
+    return result.rows[0];
+  }
+
+  static async findByUsername(username) {
+    const result = await pool.query("SELECT * FROM users WHERE username = $1", [
+      username,
+    ]);
+    return result.rows[0];
+  }
+
+  static async findById(id) {
+    const result = await pool.query(
+      "SELECT id, username, created_at FROM users WHERE id = $1",
+      [id],
+    );
+    return result.rows[0];
+  }
+
+  static async comparePassword(plain, hash) {
+    return bcrypt.compare(plain, hash);
+  }
+}
+
+module.exports = User;
