@@ -1,6 +1,7 @@
 const express = require("express");
 const auth = require("../middleware/auth");
 const Task = require("../models/Task");
+const analyzeTask = require("../services/analyzer");
 
 const router = express.Router();
 
@@ -17,7 +18,7 @@ router.get("/", async (req, res) => {
   }
 });
 
-// Создать задачу (пока без анализа, проставляем дефолтные значения)
+// Создать задачу
 router.post("/", async (req, res) => {
   const { title, description } = req.body;
   if (!title) {
@@ -25,18 +26,31 @@ router.post("/", async (req, res) => {
   }
 
   try {
-    // Пока просто дефолтные значения
+    const text = description ? `${title} ${description}` : title;
+    const { priority, category } = await analyzeTask(text);
+
     const newTask = await Task.create(
       req.userId,
       title,
       description,
-      "medium",
-      "general",
+      priority,
+      category,
     );
     res.status(201).json(newTask);
   } catch (error) {
     console.error("Ошибка создания задачи:", error);
-    res.status(500).json({ error: "Не удалось создать задачу" });
+    try {
+      const newTask = await Task.create(
+        req.userId,
+        title,
+        description,
+        "medium",
+        "general",
+      );
+      res.status(201).json(newTask);
+    } catch (err) {
+      res.status(500).json({ error: "Не удалось создать задачу" });
+    }
   }
 });
 
