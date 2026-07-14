@@ -109,3 +109,96 @@ tr:hover {
 td .btn {
   margin-right: 5px;
 }
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.card {
+  background: #fff;
+  border-radius: 8px;
+  padding: 20px;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.btn {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  background: #007bff;
+  color: #fff;
+  font-size: 14px;
+  transition: background 0.2s;
+}
+.btn:hover {
+  background: #0069d9;
+}
+.btn-danger {
+  background: #dc3545;
+}
+.btn-danger:hover {
+  background: #c82333;
+}
+.btn-success {
+  background: #28a745;
+}
+.btn-success:hover {
+  background: #218838;
+}
+.btn-warning {
+  background: #ffc107;
+  color: #212529;
+}
+.btn-warning:hover {
+  background: #e0a800;
+}
+
+input,
+textarea,
+select {
+  width: 100%;
+  padding: 8px;
+  margin: 6px 0 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  font-family: inherit;
+}
+
+label {
+  font-weight: 600;
+  display: block;
+  margin-top: 8px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+}
+th,
+td {
+  padding: 12px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+th {
+  background: #f8f9fa;
+  font-weight: 600;
+}
+tr:hover {
+  background: #f1f3f5;
+}
+
+.error {
+  color: #dc3545;
+  margin-bottom: 10px;
+}
+
+td .btn {
+  margin-right: 5px;
+}
