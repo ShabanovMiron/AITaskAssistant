@@ -55,7 +55,7 @@ router.post("/login", async (req, res) => {
 
     const isPasswordValid = await User.comparePassword(
       password,
-      user.password.hash,
+      user.password_hash,
     );
     if (!isPasswordValid) {
       return res

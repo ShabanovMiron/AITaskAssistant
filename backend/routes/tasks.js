@@ -26,6 +26,7 @@ router.post("/", async (req, res) => {
   }
 
   try {
+    console.log();
     const text = description ? `${title} ${description}` : title;
     const { priority, category } = await analyzeTask(text);
 

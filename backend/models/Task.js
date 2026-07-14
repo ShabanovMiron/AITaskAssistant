@@ -1,4 +1,3 @@
-// backend/models/Task.js
 const pool = require("../db");
 
 class Task {

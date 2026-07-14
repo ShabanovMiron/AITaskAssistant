@@ -1,6 +1,7 @@
 const axios = require("axios");
 
 async function analyzeTask(text) {
+  console.log(`[analyzer] Отправка текста в Python: "${text}"`);
   try {
     const response = await axios.post(
       process.env.PYTHON_SERVICE_URL,

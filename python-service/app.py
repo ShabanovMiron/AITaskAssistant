@@ -37,7 +37,12 @@ def analyze():
     if not isinstance(text, str) or len(text.strip()) == 0:
         return jsonify({'error': 'Text must be a non-empty string'}), 400
 
+    print(f"[analyzer] Отправка текста в Python: {text}") # Логирование
+
     result = analyze_text(text)
+
+    print(f"Результат анализа: {result}") # Логирование 
+
     return jsonify(result)
 
 if __name__ == '__main__':
